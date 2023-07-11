@@ -1,5 +1,5 @@
-from keras.applications.vgg16 import VGG16
-from keras.models import *
+from tensorflow.keras.applications.vgg16 import VGG16
+from tensorflow.keras.models import *
 
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from tensorflow.keras.layers import *

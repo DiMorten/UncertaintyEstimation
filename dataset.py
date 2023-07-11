@@ -8,9 +8,11 @@ from tensorflow.keras.preprocessing.image import load_img
 class Dataset:
     def __init__(self, train_size, input_size = [256,256,3]):
         self.input_size_ = input_size
-        
-        self.paths_ = np.array([['dataset/train_val/images/'+file, 'dataset/train_val/masks/'+file[:-4]+'.bmp'] for file in os.listdir('dataset/train_val/images/')])
-        self.paths_test_ = np.array([['dataset/TEST/images/'+file, 'dataset/TEST/masks/'+file[:-4]+'.bmp'] for file in os.listdir('dataset/TEST/images/')])
+        path_base = 'D:/Jorge/datasets/underwater/'
+        self.paths_ = np.array([[path_base + 'train_val/images/'+file, 
+            path_base + 'train_val/masks/'+file[:-4]+'.bmp'] for file in os.listdir(path_base+'train_val/images/')])
+        self.paths_test_ = np.array([[path_base + 'TEST/images/'+file, 
+            path_base + 'TEST/masks/'+file[:-4]+'.bmp'] for file in os.listdir(path_base+'TEST/images/')])
 
         temp = list(zip(self.paths_[:,0],self.paths_[:,1]))
         random.shuffle(temp)
