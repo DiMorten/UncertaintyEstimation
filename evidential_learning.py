@@ -80,8 +80,8 @@ class EvidentialLearning:
         self.an_ = np.minimum([1.0],[(float(epoch)/75.0)])
     
 class DirichletLayer(tf.keras.layers.Layer):
-  def __init__(self, num_outputs):
-    super(DirichletLayer, self).__init__()
+  def __init__(self, num_outputs, **kwargs):
+    super(DirichletLayer, self).__init__(**kwargs)
     self.num_outputs = num_outputs
 
   def get_config(self):
@@ -98,3 +98,18 @@ class DirichletLayer(tf.keras.layers.Layer):
     #m = tf.math.divide_no_nan(evidence,S) # m = bk
     
     return alpha
+  
+def alpha_to_probability_and_uncertainty(alpha):
+    print("alpha.shape", alpha.shape)
+
+    S = np.sum(alpha, axis = -1)
+    print("S.shape", S.shape)
+    K = np.shape(alpha)[-1]
+    # print("K.shape", K.shape)
+    print("K", K)
+    u = K / S
+    print("u.shape", u.shape)
+    belief = (alpha - 1) / np.expand_dims(S, axis = -1)
+    print("belief.shape", belief.shape)
+    return belief, u
+

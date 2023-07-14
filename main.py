@@ -42,8 +42,8 @@ def main():
             nnmodel.el.updateAnnealingCoeficient(epochs)
             history.append(nnmodel.model.fit(dataset.dataGeneration(dataset.x_train_paths_, dataset.y_train_paths_, batch_size=batch_size), epochs=1, steps_per_epoch=len(dataset.x_train_paths_)/batch_size,validation_data=dataset.dataGeneration(dataset.x_val_paths_, dataset.y_val_paths_, batch_size=batch_size),callbacks=[model_checkpoint,tensorboard_callback])) 
         #model.evaluate(data_gen(x_test_paths, y_test_paths, batch_size=1))
-            if x%50 == 0:
-                nnmodel.model.save('saved_model_cc_an' + str(i) + '/my_model')    
+            
+            nnmodel.model.save('saved_model_cc_an' + str(i) + '/my_model')    
         
         
 if __name__ == "__main__":
